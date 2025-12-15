@@ -5,11 +5,13 @@
 #include <time.h>
 #include <math.h>
 
+#ifdef _WIN64
 //I FUCKING HATE WINDOWS.H
 //THIS SHIT CLASHES WITH EVERYTHING INSIDE RAYLIB.H FUCK THIS SHIT I WANNA BLOW UP MICROSOFT HQ
 namespace win{
     #include <windows.h>
 }
+#endif
 
 //Graphics Lib
 #include <raylib/raylib.h>
@@ -41,7 +43,10 @@ typedef struct {
 int main() {
     //Window Init
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "shapes <demo> - @217eastbroadway");
+
+    #ifdef _WIN64
     win::MessageBoxA(NULL, "Press F12 to capture a screenshot!", "Tip", MB_OK);
+    #endif
     
     //rng seed init
     srand(time(NULL));
